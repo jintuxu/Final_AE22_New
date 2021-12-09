@@ -192,8 +192,6 @@ server <- function(input, output){
     min_df <- summarise_all(rd_df, min)
     input_df <- df[df$Name == input$player, ]
     input_df <- input_df[input_df$Event == input$event, ]
-    #input_df <- input_df[input_df$Age == max(input_df$Age)]
-    #filter(df, Name == input$player & Event == input$Event)
     input_df <- select(input_df, c(Age, Height, Weight))
     
     final_df <- do.call("rbind", list(max_df, min_df, input_df) )

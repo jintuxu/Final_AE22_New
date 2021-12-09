@@ -20,6 +20,7 @@ visual_panel2 <- tabItem(
       uiOutput("thirdSelection"),
     ),
     mainPanel(
+      helpText("Note: The numbers on the chart represents the maximum value"),
       plotOutput("radar")
     )
   ),
