@@ -13,6 +13,7 @@ library(collapsibleTree)
 library(shinycssloaders)
 library(DT)
 library(tigris)
+library(fmsb)
 source("Alex's Page.R")
 source("Carl's page.R")
 source("Peihang's Page.R")
@@ -24,7 +25,7 @@ data <- merge(data, noc, by = "NOC", all.x = T)
 ui <- fluidPage(
   dashboardPage(
     skin = "red",
-    dashboardHeader(title = 'Olympics: 120Yrs', titleWidth = 200),
+    dashboardHeader(title = 'Olympics in 120Yrs', titleWidth = 200),
     dashboardSidebar(
       width = 200,
       sidebarMenu(
@@ -62,7 +63,8 @@ ui <- fluidPage(
                 )
                 ),
         tabItem(tabName = "tab1",
-                titlePanel("This is the visualization"),
+                titlePanel("Number of Male and Female Athletes Over Time"),
+                p("The following chart shows the number of male and female athletes that have participated in the Olympics over time. The data can be broken down by country and season using the widgets on the left panel."),
                 visual_panel1),
         tabItem(tabName = "tab2",
                 titlePanel("Showing the Age, Height, Weight of the selected player"),
