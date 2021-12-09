@@ -6,8 +6,6 @@ library(leaflet)
 library(magrittr)
 library(R.utils)
 library(rsconnect)
-library(plotly)
-library(leaflet)
 library(shinydashboard)
 library(collapsibleTree)
 library(shinycssloaders)
@@ -46,18 +44,23 @@ ui <- fluidPage(
   enjoyment when we watch athletes compete on Television. Due to the COVID-19 
   pandemic, the 2020 Tokyo Olympics have been postponed for a year, coming to a 
   close in the summer of 2021."),
+                p("This project explores data on the modern Olympic Games, including all the 
+  Games from Athens 1896 to Rio 2016. The dataset we've used is", 
+                a(href = "https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results", "120 years of Olympic history: athletes and results."), ),
+                h4("What Can Be Answered in This Project?"),
+                p("1. We wanted to understand male and female physical differences in Olympic 
+  games, since women have generally been underrepresented in the sports field. 
+  The first page allows us to find physical differences between male 
+  and female athletes in either summer or winter Olympics throughout the last 120 
+  years." ),
                 
-                p("We wanted to understand male and female relationships in Olympic games, 
-    since women have generally been underrepresented in the sports field. The 
-    first interactive page allows to find difference between number of male and 
-    female athletes in either in summer or winter Olympics throughout 120 years
-    . Then, how number of medals changes in 120 years in each country? The 
-    second page is designed to show this change in each country. The third page 
-    shows the growth patterns of average heights of Olympic athletes in 
-    different age group. We included this page to help know how well does the 
-    global economic development over the last 120 years improve the athletes 
-    physical conditions like height in both teenager and adult group, as well 
-    as displaying the extent of physical difference between the two sexes."),
+                p("2. The second page demonstrates data of athletes' physical characteristics grouped by sport events and sex."),
+                
+                p("3. The third page shows the growth patterns of average heights of Olympic 
+  athletes in different age group. We included this page to help know how well 
+    does the global economic development over the last 120 years improve the 
+    athletes physical characteristics like height in all age groups, as well as 
+    displaying the extent of physical difference between the two genders."),
                 
                 img(src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fuploads.xuexila.com%2Fallimg%2F1611%2F744-161104091034.jpg&refer=http%3A%2F%2Fuploads.xuexila.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641595521&t=0b789fe97096c82c9606bee017a8ad06"
                 )
@@ -65,13 +68,51 @@ ui <- fluidPage(
         tabItem(tabName = "tab1",
                 titlePanel("Number of Male and Female Athletes Over Time"),
                 p("The following chart shows the number of male and female athletes that have participated in the Olympics over time. The data can be broken down by country and season using the widgets on the left panel."),
-                visual_panel1),
+                visual_panel1,
+                strong("If we only look at Summer Olympics, as a matter of fact, the number of male athletes in the 1952 Olympics",
+                  br(), "
+                  is more than 8 times the number of female athletes! However, around 1980, the number of female athlete started to increase rapidly",
+                  br(),
+                  "and approached the number of male athletes in the 2010s.  Up until the 2016 Olympics, male athletes became only around 1.2 times as many. ")
+                ),
         tabItem(tabName = "tab2",
                 titlePanel("Showing the Age, Height, Weight of the selected player"),
                 visual_panel2),
         tabItem(tabName = "tab3",
                 visual_panel3),
-        tabItem(tabName = "tab4")
+        tabItem(tabName = "tab4",
+                titlePanel("Conclusions"),
+                sidebarLayout(
+                  sidebarPanel(
+                    
+                    h2("Takeaway 1"),
+                    p("The number of female athletes have lagged behind male athletes in the Olympics in the past, though the gap is now closing in recent years."),
+                    p("Some countries have never participated in the Winter Olympics! (Mauritius, Angola, etc)"),
+                    h2("Takeaway 2"),
+                    p("We found that in some specific events, the medal owners share similar physical statistics. For example, they may have similar weight which means that this
+physical attribute positively contribute to wining.
+We also found that radar charts are really good at showing the statistics of a person. People could easily identify which aspect is the strength of the person. It will be even more powerful if we have more data."),
+                    h2("Takeaway 3"),
+                    p("We had an assumption, during our exploratory stage, that there is an essential physical difference between male and female athletes, and thus we grouped the trends by sex. As we expected, the “Height Growth Trend” graph we displayed in our analysis does show a conspicuous height gap between the two trends. Moreover, contradicting our initial hypothesis that the average height of athletes ought to display a natural linear growth, the graphs instead show us some “wavy” irregular growth patterns.")
+                    
+                  ),
+                  
+                  mainPanel(
+                    
+                    fluidRow(
+                      column(8, align="center", offset = 2,
+                             img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqPbpGTpH0_N0gh6P4J8SCFgM8uxnywDb2wySDz6pWaC5Bp0o1"
+                             )
+                      ))
+                    ,
+                    p("Throughout the project, we've explored the Olympics Athlete data through various lenses such as gender, age, and physical characteristics. The dataset gave us a lot more insight into what the Olympics had been like in the past and the trends that it takes toward the present and future. While we do see things such as females being underrepresented in the Olympics or that some physical characteristics yield better performance in games, it, undoubtfully, may be the case given the nature of sports. However, there are still trends that are promising to see. For instance, the fact that in some areas, the gap between females and males is closing, or the fact that some of our findings managed to defy our initial hypothesis."),
+                    
+                    
+                  )
+                  
+                  
+                )
+                )
       )
     )
   )
