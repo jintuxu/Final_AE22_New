@@ -9,9 +9,9 @@ df <- filter(raw_df, !is.na(Age) & !is.na(Height) & !is.na(Weight)) %>%
   filter(Name == Name)
 
 
-player_stat <- tabPanel(
-  "Player Statistics",
+visual_panel2 <- tabItem(
   titlePanel("Showing the Age, Height, Weight of the selected player"),
+  
   sidebarLayout(
     sidebarPanel(
       p("The data only contains althletes who won medals"),
@@ -39,7 +39,7 @@ player_stat <- tabPanel(
 
 ui <- navbarPage(
   "testing",
-  player_stat
+  visual_panel2
 )
 
 server <- function(input, output) {
